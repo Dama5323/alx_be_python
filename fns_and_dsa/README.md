@@ -1,5 +1,5 @@
 
-# 📁 funcs_and_dat
+# 📁 fns_and_dsa
 
 This directory contains beginner-level Python scripts focused on building strong foundational skills in **functions**, **lists**, **modules**, **global variables**, and **user interaction**. Each script is designed as a mini-project to demonstrate practical programming concepts.
 
