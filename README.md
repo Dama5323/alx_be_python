@@ -106,5 +106,5 @@ Empowering learning through hands-on projects.
 
 ## 📬 Feedback
 
-If you have suggestions or feedback, feel free to reach out or fork the repo to contribute!
+If you have suggestions or feedback, feel free to reach out or fork the repo to contribute
 
