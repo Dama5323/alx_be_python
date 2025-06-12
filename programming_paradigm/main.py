@@ -1,28 +1,41 @@
+# main-0.py
+
 import sys
 from bank_account import BankAccount
 
 def main():
-    account = BankAccount(100)  # Example starting balance
     if len(sys.argv) < 2:
-        print("Usage: python main.py <command>:<amount>")
-        print("Commands: deposit, withdraw, display")
-        sys.exit(1)
+        print("Usage: python3 main-0.py <operation> [amount]")
+        return
 
-    command, *params = sys.argv[1].split(':')
-    amount = float(params[0]) if params else None
+    account = BankAccount()
+    operation = sys.argv[1].lower()
 
-    if command == "deposit" and amount is not None:
+    if operation == "deposit":
+        if len(sys.argv) != 3:
+            print("Usage: deposit <amount>")
+            return
+        amount = float(sys.argv[2])
         account.deposit(amount)
-        print(f"Deposited: ${amount}")
-    elif command == "withdraw" and amount is not None:
-        if account.withdraw(amount):
-            print(f"Withdrew: ${amount}")
-        else:
-            print("Insufficient funds.")
-    elif command == "display":
+        print(f"Deposited: ${amount:.2f}")
         account.display_balance()
+
+    elif operation == "withdraw":
+        if len(sys.argv) != 3:
+            print("Usage: withdraw <amount>")
+            return
+        amount = float(sys.argv[2])
+        if account.withdraw(amount):
+            print(f"Withdrawn: ${amount:.2f}")
+        else:
+            print("Withdrawal failed: Insufficient funds")
+        account.display_balance()
+
+    elif operation == "balance":
+        account.display_balance()
+
     else:
-        print("Invalid command.")
+        print("Unknown operation. Use deposit, withdraw, or balance.")
 
 if __name__ == "__main__":
     main()
