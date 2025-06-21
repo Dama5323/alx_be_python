@@ -1,69 +1,54 @@
-class Book:
-    """Base class representing a book."""
-    def __init__(self, title, author):
-        """Initialize book with title and author."""
-        self.title = title
-        self.author = author
-    
-    def __str__(self):
-        """Return string representation of the book."""
-        return f"Book: {self.title} by {self.author}"
+from book_class import Book
+from library_system import Book, EBook, PrintBook, Library
+from polymorphism_demo import Shape, Rectangle, Circle
+import math
+
+def main():
+    # Creating an instance of Book
+    my_book = Book("1984", "George Orwell", 1949)
+
+    # Demonstrating the __str__ method
+    print(my_book)  # Expected to use __str__
+
+    # Demonstrating the __repr__ method
+    print(repr(my_book))  # Expected to use __repr__
+
+    # Deleting a book instance to trigger __del__
+    del my_book
+
+if __name__ == "__main__":
+    main()
 
 
-class EBook(Book):
-    """Derived class representing an electronic book."""
-    def __init__(self, title, author, file_size):
-        """
-        Initialize ebook with title, author and file size.
-        
-        Args:
-            title (str): Book title
-            author (str): Book author
-            file_size (int): File size in KB
-        """
-        super().__init__(title, author)
-        self.file_size = file_size
-    
-    def __str__(self):
-        """Return string representation of the ebook."""
-        return f"EBook: {self.title} by {self.author}, File Size: {self.file_size}KB"
+def main():
+    # Create a Library instance
+    my_library = Library()
+
+    # Create instances of each type of book
+    classic_book = Book("Pride and Prejudice", "Jane Austen")
+    digital_novel = EBook("Snow Crash", "Neal Stephenson", 500)
+    paper_novel = PrintBook("The Catcher in the Rye", "J.D. Salinger", 234)
+
+    # Add books to the library
+    my_library.add_book(classic_book)
+    my_library.add_book(digital_novel)
+    my_library.add_book(paper_novel)
+
+    # List all books in the library
+    my_library.list_books()
+
+if __name__ == "__main__":
+    main()
 
 
-class PrintBook(Book):
-    """Derived class representing a physical printed book."""
-    def __init__(self, title, author, page_count):
-        """
-        Initialize print book with title, author and page count.
-        
-        Args:
-            title (str): Book title
-            author (str): Book author
-            page_count (int): Number of pages
-        """
-        super().__init__(title, author)
-        self.page_count = page_count
-    
-    def __str__(self):
-        """Return string representation of the print book."""
-        return f"PrintBook: {self.title} by {self.author}, Page Count: {self.page_count}"
+    def main():
+    shapes = [
+        Rectangle(10, 5),
+        Circle(7)
+    ]
 
+    for shape in shapes:
+        print(f"The area of the {shape.__class__.__name__} is: {shape.area()}")
 
-class Library:
-    """Class representing a library using composition to manage books."""
-    def __init__(self):
-        """Initialize library with empty book collection."""
-        self.books = []
-    
-    def add_book(self, book):
-        """
-        Add a book to the library collection.
-        
-        Args:
-            book (Book): Book instance to add
-        """
-        self.books.append(book)
-    
-    def list_books(self):
-        """Print all books in the library."""
-        for book in self.books:
-            print(book)
+if __name__ == "__main__":
+    main()
